@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Market App Prototype</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<style>
+  .swiper {
+    width: 100%;
+    height: 200px;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  .modal {
+    transition: transform 0.3s ease-out;
+    transform: translateY(100%);
+  }
+  .modal.active {
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body class="bg-gray-100">
+
+<!-- Header Section -->
+<div class="fixed top-0 w-full bg-white shadow-md z-10">
+  <div class="flex items-center justify-between h-12 px-4">
+    <button onclick="history.back()">
+      <img src="https://via.placeholder.com/24" alt="Back" />
+    </button>
+    <input type="search" placeholder="place,food,market searching" class="border rounded px-2 py-1" />
+    <div>
+      <button id="openModal">
+        <img src="https://via.placeholder.com/24" alt="Menu" />
+      </button>
+      <button>
+        <img src="https://via.placeholder.com/24" alt="Search" />
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Carousel Section -->
+<div class="mt-12">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://via.placeholder.com/300x200" alt="Slide 1" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://via.placeholder.com/300x200" alt="Slide 2" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://via.placeholder.com/300x200" alt="Slide 3" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Window -->
+<div id="modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex justify-end flex-col">
+  <div class="bg-white p-4">
+    <button id="closeModal">
+      <img src="https://via.placeholder.com/24" alt="Close" />
+    </button>
+    <!-- Modal content here -->
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="mt-4 px-4 mb-12">
+  <!-- Content goes here -->
+</main>
+
+<!-- Fixed Bottom Navigation -->
+<div class="fixed bottom-0 w-full bg-white shadow-md z-10">
+  <div class="flex justify-around items-center h-12">
+    <img src="https://via.placeholder.com/24" alt="Home" />
+    <img src="https://via.placeholder.com/24" alt="Favorites" />
+    <img src="https://via.placeholder.com/24" alt="Orders" />
+    <img src="https://via.placeholder.com/24" alt="Messages" />
+    <img src="https://via.placeholder.com/24" alt="Profile" />
+  </div>
+</div>
+
+<script>
+  var swiper = new Swiper('.mySwiper', {
+    autoplay: {
+      delay: 1000,
+    },
+    loop: true,
+  });
+
+  document.getElementById('openModal').addEventListener('click', function() {
+    document.getElementById('modal').classList.add('active');
+  });
+
+  document.getElementById('closeModal').addEventListener('click', function() {
+    document.getElementById('modal').classList.remove('active');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Market App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        .modal {
+            transition: transform 0.3s ease-out;
+            transform: translateY(100%);
+        }
+        .modal.active {
+            transform: translateY(0);
+        }
+        .backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        .backdrop.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full bg-white z-10">
+    <div class="flex items-center justify-between h-12 px-4">
+        <button onclick="history.back()">
+            <img src="https://via.placeholder.com/24" alt="Back" />
+        </button>
+        <div class="flex-grow mx-2">
+            <input type="search" placeholder="place,food,market searching" class="w-full px-4 py-2 border rounded-full" />
+        </div>
+        <button id="openModal">
+            <img src="https://via.placeholder.com/24" alt="Menu" />
+        </button>
+        <button>
+            <img src="https://via.placeholder.com/24" alt="Search" />
+        </button>
+    </div>
+</header>
+
+<!-- Main content -->
+<main class="pt-12">
+    <!-- Carousel -->
+    <div class="swiper mySwiper mt-4">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://via.placeholder.com/320x180" alt="Slide 1" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://via.placeholder.com/320x180" alt="Slide 2" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://via.placeholder.com/320x180" alt="Slide 3" />
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Link box section -->
+    <div class="p-4">
+        <div class="grid grid-cols-2 gap-4">
+            <a href="#" class="block">
+                <img src="https://via.placeholder.com/160x90" alt="Link 1" />
+                <p class="text-center">Item 1</p>
+            </a>
+            <a href="#" class="block">
+                <img src="https://via.placeholder.com/160x90" alt="Link 2" />
+                <p class="text-center">Item 2</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Tab list -->
+    <div class="flex overflow-x-auto py-2">
+        <button class="flex-none w-24 h-24 bg-gray-300 rounded-full mx-2">
+            <img src="https://via.placeholder.com/96" alt="Tab 1" class="w-full h-full object-cover rounded-full" />
+        </button>
+        <button class="flex-none w-24 h-24 bg-gray-300 rounded-full mx-2">
+            <img src="https://via.placeholder.com/96" alt="Tab 2" class="w-full h-full object-cover rounded-full" />
+        </button>
+        <button class="flex-none w-24 h-24 bg-gray-300 rounded-full mx-2">
+            <img src="https://via.placeholder.com/96" alt="Tab 3" class="w-full h-full object-cover rounded-full" />
+        </button>
+    </div>
+
+    <!-- Scrollable list section -->
+    <div class="p-4">
+        <h2 class="text-lg font-bold mb-2">Title of Section</h2>
+        <div class="flex overflow-x-auto">
+            <div class="flex-none w-48 h-48 bg-gray-300 mx-2 rounded-lg">
+                <img src="https://via.placeholder.com/192" alt="Item 1" class="w-full h-full object-cover rounded-lg" />
+            </div>
+            <div class="flex-none w-48 h-48 bg-gray-300 mx-2 rounded-lg">
+                <img src="https://via.placeholder.com/192" alt="Item 2" class="w-full h-full object-cover rounded-lg" />
+            </div>
+            <div class="flex-none w-48 h-48 bg-gray-300 mx-2 rounded-lg">
+                <img src="https://via.placeholder.com/192" alt="Item 3" class="w-full h-full object-cover rounded-lg" />
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Bottom navigation -->
+<nav class="fixed bottom-0 left-0 w-full bg-white h-12">
+    <div class="flex justify-between items-center h-full px-4">
+        <button>
+            <img src="https://via.placeholder.com/24" alt="Home" />
+        </button>
+        <button>
+            <img src="https://via.placeholder.com/24" alt="Favorites" />
+        </button>
+        <button>
+            <img src="https://via.placeholder.com/24" alt="Search" />
+        </button>
+        <button>
+            <img src="https://via.placeholder.com/24" alt="Orders" />
+        </button>
+        <button>
+            <img src="https://via.placeholder.com/24" alt="Profile" />
+        </button>
+    </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fixed bottom-0 left-0 w-full bg-white rounded-t-lg p-4 z-20">
+    <button id="closeModal" class="absolute top-2 right-2">
+        <img src="https://via.placeholder.com/24" alt="Close" />
+    </button>
+    <p>Modal content goes here...</p>
+    <div>
+        <div>리스트</div>
+        <div></div>
+    </div>
+</div>
+
+<!-- Backdrop -->
+<div class="backdrop" id="backdrop"></div>
+
+<script>
+    // Initialize Swiper
+    var swiper = new Swiper('.mySwiper', {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 1000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+
+    // Modal functionality
+    const modal = document.querySelector('.modal');
+    const backdrop = document.getElementById('backdrop');
+    document.getElementById('openModal').addEventListener('click', () => {
+        modal.classList.add('active');
+        backdrop.classList.add('active');
+    });
+    document.getElementById('closeModal').addEventListener('click', () => {
+        modal.classList.remove('active');
+        backdrop.classList.remove('active');
+    });
+</script>
+
+</body>
+</html>

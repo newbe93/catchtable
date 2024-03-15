@@ -1,0 +1,128 @@
+*{
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -.05em;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body{
+    font-family: "Roboto", "Noto Sans KR", sans-serif;
+}
+
+#header{
+    --header-height : 48px;
+    max-width: 480px;
+    
+}
+h1{
+    word-break: break-word;
+    line-height: normal;
+}
+input{
+    color: #000;
+    outline: none;
+    appearance: none;
+    box-shadow: none;
+    border: 0;   
+}
+input[type="text"]{
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    background: transparent;
+    color: #000;
+    font-size: 14px;
+}
+#header .inner{
+    margin: 0 auto;
+    max-width: 480px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    height: 48px;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+#header .header-left{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#header .brand{
+    text-indent: -9999px;
+    mask-image: url(./images/hamburger-solid.svg);
+    mask-size: 25px;
+    
+    width: 25px;
+    height: 25px;
+    padding: 1px 0 0 1px;
+    margin: 0 20px 0 -1px;
+    background-color: #FF3D00;
+}
+
+#header .search input{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 18px;
+    height: 36px;
+    
+    background: #f1f1f1 url(./images/search-solid.svg) 12px 50% no-repeat;
+    background-size: 15px;
+    padding-right: 15px;
+    padding-left: 44px;
+    font-weight: 500;
+    letter-spacing: -.05em;
+
+}
+
+#header .header-right{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    flex: none;
+}
+
+#header .header-right .btn-mark {
+    background: url(./images/bookmark-regular.svg) 50% 50% no-repeat;
+    width: 25px;
+    height: 25px;
+    display: block;
+    text-indent: -999em;
+    overflow: hidden;
+    margin-left: 8px;
+}
+
+.alarm{
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    background: url(/images/bell-regular.svg) 50% 50% no-repeat;
+    position: relative;
+    background-size: contain;
+}
+
+.alarm span{
+    position: absolute;
+    width: 1px ;
+    height: 1px;
+    border: 0;
+    z-index: -1;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+}
