@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/pcowner.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav">
+            <div class="nav-shop-select">
+                <select name="" id="">
+                    <option value="테이블노트1호점">테이블노트1호점</option>
+                    <option value="테이블노트2호점">테이블노트2호점</option>
+                </select>
+            </div>
+            <ul class="nav-menu">
+                <li class="myshop-starter">
+                    <a href="javascript:void(0)">내 가게</a>
+                    <ul class="myshop-menu show">
+                        <li><a href="javascript:void(0)">가게 정보</a></li>
+                        <li><a href="javascript:void(0)">메뉴</a></li>
+                    </ul>
+                </li>
+                <li class="book-menu-starter">
+                    <a href="javascript:void(0)">예약확인</a>
+                    <ul class="book-menu">
+                        <li><a href="javascript:void(0)">예약 승인 요청</a></li>
+                        <li><a href="javascript:void(0)">이용 예정 내역</a></li>
+                        <li><a href="javascript:void(0)">예약 완료 내역</a></li>
+                    </ul>
+                </li>
+                <li><a href="javascript:void(0)">고객명단</a></li>
+            </ul>
+        </div>
+        <main class="main">
+            <div class="inner">
+                <form class="myshop-info">
+                    <table>
+                        <tr>
+                            <th>가게명</th>
+                            <td>
+                                <div class="shop-name"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>식당정보</th>
+                            <td>
+                                <div class="shop-description"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>위치</th>
+                            <td>
+                                <div class="shop-address"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>전화번호</th>
+                            <td>
+                                <div class="shop-tel"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>이용가능</th>
+                            <td>
+                                <div class="shop-available"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+          </div>
+        </main>
+    </div>
+    <script src="http://code.jQuery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                type : 'get',
+                url : './dummy.json',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data)
+                    var id;
+                    data.dummy_shops.forEach(element => {
+                        if(element.name == $('.nav-shop-select select').val()){
+                            id = element.id;
+                        }
+                    });
+                    $('.main .shop-name').html(data.dummy_shops[id].name)
+                    $('.main .shop-description').html(data.dummy_shops[id].description)
+                    $('.main .shop-tel').html(data.dummy_shops[id].tel)
+                    $('.main .shop-available').html(data.dummy_shops[id].available.join(", "))
+                    $('.main .shop-address').html(data.dummy_shops[id].address)
+                    
+                },
+                error : function(e){
+                    console.log(e)
+                }
+            })
+            $('.main .shop-name').val($('.nav-shop-select select').val())
+            $('.book-menu-starter a, .myshop-starter a').on('click',function(){
+                $(this).parent().children('ul').toggleClass('show')
+            })
+            $('.nav li').on('click',function(){
+                $(this).children('a').addClass('active')
+               
+            })
+            $('.nav-shop-select select').on('input',function(){
+                $.ajax({
+                type : 'get',
+                url : './dummy.json',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data)
+                    var id;
+                    data.dummy_shops.forEach(element => {
+                        if(element.name == $('.nav-shop-select select').val()){
+                            id = element.id;
+                        }
+                    });
+                    $('.main .shop-name').text(data.dummy_shops[id].name)
+                    $('.main .shop-description').text(data.dummy_shops[id].description)
+                    $('.main .shop-tel').text(data.dummy_shops[id].tel)
+                    $('.main .shop-address').html(data.dummy_shops[id].address)
+
+                    
+                },
+                error : function(e){
+                    console.log(e)
+                }
+            })
+            })
+        })
+    </script>
+</body>
+</html>

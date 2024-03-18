@@ -1,0 +1,95 @@
+body{
+    font-family: "Roboto", "Noto Sans KR", sans-serif;
+}
+a, a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+.wrapper{
+    max-width: 100%;
+    min-height: 100%;
+    display: flex;
+}
+
+.wrapper .nav{
+    width: 20%;
+    min-height: 100vh;
+    border: 1px solid black;
+}
+
+.nav .nav-shop-select{
+    padding: 50px 10px;
+    background-color: #1876FB;
+}
+.nav .nav-shop-select select{
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-family: "Roboto", "Noto Sans KR", sans-serif;
+}
+
+a{
+    display: block;
+    height: 50px;
+}
+
+.nav-menu li{
+    height: 50px;
+    margin-left: 5px;
+    line-height: 50px;
+    
+}
+.nav-menu .myshop-starter,
+.nav-menu .book-menu-starter{
+    height: auto;
+}
+.myshop-menu,
+.book-menu{
+    height: 0px;
+    overflow: hidden;
+    transition: 1s height;
+}
+
+.myshop-menu.show{
+    height: 100px;
+}
+li a.active{
+    border-bottom: 1px solid #1876FB;
+   
+}
+.book-menu.show{
+    height: 150px;
+}
+
+/* main */
+.main{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+.main .inner{
+    margin: 0 auto;
+    width: 95%;
+    min-height: 70%;
+    padding: 0 50px;
+   
+}
+
+.myshop-info th{
+    background-color: #1876FB;
+    color: white;
+    padding: 10px;
+    border-bottom: 1px solid white;
+}
+.myshop-info td,
+.myshop-info td input{
+    height: 100%;
+}
+
+td div{
+    padding: 10px 20px;
+    border-bottom: 1px solid #1876FB;
+}
+

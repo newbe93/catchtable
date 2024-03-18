@@ -55,7 +55,15 @@ button {
     background: #fff;
     border-bottom: 1px solid #fff;
 }
-
+#header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    opacity: 1;
+    visibility: visible;
+}
 #header .header-left{
     display: flex;
     align-items: center;
@@ -65,10 +73,10 @@ button {
 #header .brand{
     text-indent: -9999px;
     mask-image: url(./images/hamburger-solid.svg);
-    mask-size: 25px;
+    mask-size: 21px;
     
-    width: 25px;
-    height: 25px;
+    width: 21px;
+    height: 21px;
     padding: 1px 0 0 1px;
     margin: 0 20px 0 -1px;
     background-color: #FF3D00;
@@ -99,8 +107,8 @@ button {
 
 #header .header-right .btn-mark {
     background: url(./images/bookmark-regular.svg) 50% 50% no-repeat;
-    width: 25px;
-    height: 25px;
+    width: 21px;
+    height: 21px;
     display: block;
     text-indent: -999em;
     overflow: hidden;
@@ -108,8 +116,8 @@ button {
 }
 
 .alarm{
-    width: 25px;
-    height: 25px;
+    width: 21px;
+    height: 21px;
     margin-left: 10px;
     background: url(/images/bell-regular.svg) 50% 50% no-repeat;
     position: relative;
@@ -125,4 +133,103 @@ button {
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
+}
+
+/* main */
+main{
+    min-height: 1000px;
+}
+
+
+/* location-select */
+.location-select{
+    position: sticky;
+    top: 48px;
+    height: 48px;
+    padding: 0 20px;
+    z-index: 10;
+    border-top: 1px solid #f4f4f4;
+    background-color: #fff;
+    transition: top .3s;
+}
+
+.location-select button{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.location-select i{
+    overflow: hidden;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background: url(/images/map-marker-alt-solid.svg) 50% 50% no-repeat;
+    text-indent: -999em;
+}
+.location-select span{
+    padding: 0 8px 0 4px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* dock */
+#dock{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+#dock .dock-container{
+    position: relative;
+    margin: 0 auto;
+    max-width: 480px;
+    background: #fff;
+    border-top: 1px solid #f9f9f9;
+}
+#dock .dock-container .dock-menu{
+    display: flex;
+    height: 48px;
+    box-sizing: border-box;
+    position: relative;
+}
+#dock .dock-container .dock-menu a{
+    position: relative;
+    display: block;
+    flex: 1;
+    height: 48px;
+}
+#dock .dock-container .dock-menu a i{
+    display: block;
+    text-indent: -999em;
+    height: 48px;
+    /* background: 50% 50% no-repeat; */
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    /* background-size: 25px; */
+    mask-repeat: no-repeat;
+    mask-position: 50% 50%;
+    mask-size: 25px;
+    background-color: black;
+}
+#dock .dock-container .dock-menu a i.home{
+    mask-image: url(/images/home-solid.svg);
+}
+#dock .dock-container .dock-menu a i.search-icon{
+    mask-image: url(/images/search-solid.svg);
+}
+#dock .dock-container .dock-menu a i.review{
+mask-image: url(/images/comment-dots-regular.svg);
+}
+#dock .dock-container .dock-menu a i.mydining{
+mask-image: url(/images/calendar-minus-regular.svg);
+}
+#dock .dock-container .dock-menu a i.account{
+    mask-image: url(/images/user-regular.svg);
+}
+
+#dock .dock-container .dock-menu a.active i{
+    background-color: #FF3D00;
 }
