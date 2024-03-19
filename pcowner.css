@@ -56,8 +56,10 @@ a{
     height: 100px;
 }
 li a.active{
-    border-bottom: 1px solid #1876FB;
-   
+    text-decoration: underline;
+}
+.nav-menu > li > a{
+    text-decoration: none;
 }
 .book-menu.show{
     height: 150px;
@@ -93,3 +95,14 @@ td div{
     border-bottom: 1px solid #1876FB;
 }
 
+/* food-menu */
+.menu_card{
+    width: 150px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.food_image{
+    width: 100%;
+    height: 50%;
+}

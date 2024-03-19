@@ -24,7 +24,7 @@
                     <a href="javascript:void(0)">내 가게</a>
                     <ul class="myshop-menu show">
                         <li><a href="javascript:void(0)">가게 정보</a></li>
-                        <li><a href="javascript:void(0)">메뉴</a></li>
+                        <li class="shop-food"><a href="javascript:void(0)">메뉴</a></li>
                     </ul>
                 </li>
                 <li class="book-menu-starter">
@@ -103,14 +103,16 @@
                     console.log(e)
                 }
             })
+            //=========
             $('.main .shop-name').val($('.nav-shop-select select').val())
             $('.book-menu-starter a, .myshop-starter a').on('click',function(){
                 $(this).parent().children('ul').toggleClass('show')
             })
-            $('.nav li').on('click',function(){
-                $(this).children('a').addClass('active')
-               
+            $('.nav li').on('click',function(e){
+                $(e.target).addClass('active')
+                $('.nav li a').not($(e.target)).removeClass('active')
             })
+            //===========
             $('.nav-shop-select select').on('input',function(){
                 $.ajax({
                 type : 'get',
@@ -128,13 +130,47 @@
                     $('.main .shop-description').text(data.dummy_shops[id].description)
                     $('.main .shop-tel').text(data.dummy_shops[id].tel)
                     $('.main .shop-address').html(data.dummy_shops[id].address)
-
+                    $('.main .shop-available').html(data.dummy_shops[id].available.join(", "))
                     
                 },
                 error : function(e){
                     console.log(e)
                 }
             })
+            })
+            //============
+            $('.shop-food').on('click',function(){
+                $.ajax({
+                    type : 'get',
+                    url : './dummy.json',
+                    dataType : 'json',
+                    success : function(data){
+                        var id;
+                        data.dummy_shops.forEach(element => {
+                        if(element.name == $('.nav-shop-select select').val()){
+                            id = element.id;
+                        }
+                        })
+                        var inner_box = $('<div>')
+                        data.dummy_shops[id].menu.forEach(element => {
+                            var menu_card = $('<div>').addClass('menu_card')
+                            var food_image = $('<div>').addClass('food_image').css({
+                                'background-image' : `url("./menu_image/${element}.jpg")`,
+                                'background-size' : '100%',
+                                'background-repeat' : 'no-repeat',
+                                'background-position' : 'center'
+                            })
+                            var food_title = $('<p>').addClass('food_title').text(element)
+                            menu_card.append(food_image).append(food_title)
+                            inner_box.append(menu_card)
+                            })
+                            $('.inner').html(inner_box)
+                    
+                    },
+                    error: function(e){
+                        console.log(e)
+                    }
+                })
             })
         })
     </script>
